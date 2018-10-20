@@ -1,0 +1,51 @@
+.img1 {
+    width: 150px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.header {
+    color: indigo;
+    position: relative;
+    text-align: center;
+}
+
+.forma {
+    width: 300px;
+    height: 50px;
+    background: #fff7c9;
+    border: 5px #48b3ff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.basic {
+    width: 700px;
+    height: 500px;
+    position: absolute;
+    left: 20%;
+    top: 5%;
+    align: center;
+    border: 5px cornflowerblue;
+    background-color: azure;
+}
+
+#image {
+    width: 150px;
+    height: 100px
+}
+
+#user {
+    position: relative;
+    left: 35px;
+    top: 10px;
+}
+
+#footer {
+    left: 100px;
+    bottom: 50px;
+    color: cornflowerblue;
+}

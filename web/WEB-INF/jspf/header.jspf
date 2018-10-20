@@ -1,0 +1,54 @@
+<%@page pageEncoding="utf-8" %>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="text/html" charset="utf-8">
+    <link rel="stylesheet" href="../css/11.css">
+    <title>Proba</title>
+</head>
+<body>
+    <%
+        request.setCharacterEncoding("utf-8");
+        String searchString = "";
+
+        if (request.getParameter("search_string") != null){
+            searchString = request.getParameter("search_string");
+            session.setAttribute("search_string", searchString);
+        } else if (session.getAttribute("search_string") != null){
+            searchString = session.getAttribute("search_string").toString();
+        } else {
+            session.setAttribute("search_string", searchString);
+        }
+
+        if (request.getParameter("username") != null){
+            session.setAttribute("username", request.getParameter("username"));
+        }
+    %>
+
+
+<div class="header">
+    <img src="../images/library.png" alt="" width="120" height="100">
+
+    <div class="nameUser">
+        <h4>Привет, <%=session.getAttribute("username")%>
+        </h4>
+    </div>
+    <div class="exit">
+        <a href="/index.jsp" style="color: darkgray">выход</a>
+    </div>
+    <div class="texto">
+        <b> Online библиотека</b>
+        <p><b>для учебного процесса</b></p>
+    </div>
+</div>
+
+<div class="find">
+    <form name="search_form" method="get" action="books.jsp">
+        <input type="text" name="search_string" value="<%=searchString%>" size="80">
+        <button class="btn" type="submit">Поиск</button>
+        <select class="sel" name="search_option">
+            <option> Название</option>
+            <option>Автор</option>
+        </select>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+<%@ page import="data.Genre" %>
+<%@ page import="data.GenreList" %>
+<div class="spisok">
+    <div><p><b>Жанр</b></p></div>
+    <ul class="anv">
+        <jsp:useBean id="genreList" class="data.GenreList" scope="application"/>
+        <%
+            int selectedGenreId = 0;
+            if (request.getParameter("genre_id") != null) {
+                selectedGenreId = Integer.valueOf(request.getParameter("genre_id"));
+            } else if (session.getAttribute("genre_id") != null) {
+                selectedGenreId = Integer.valueOf(session.getAttribute("genreId").toString());
+            }
+            session.setAttribute("genreId", selectedGenreId);
+
+        %>
+
+        <li><a href="books.jsp?genre_id=0">Все книги</a></li>
+
+        <%
+
+            for (Genre genre : genreList.getGenreList()) {
+                if (selectedGenreId != 0 && selectedGenreId == genre.getId()) {
+        %>
+
+
+        <li><a style="color: red;" href="books.jsp?genre_id=<%=genre.getId()%>"><%=genre.getName()%>
+        </a></li>
+        <%
+        } else {
+        %>
+        <li><a href="books.jsp?genre_id=<%=genre.getId()%>"><%=genre.getName()%>
+        </a></li>
+        <% }
+        }
+        %>
+    </ul>
+</div>
+
