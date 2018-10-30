@@ -87,7 +87,7 @@ public class BookList {
                 "inner join library.publisher p on b.publisher_id=p.id ");
 
         if (type == SearchType.AUTHOR) {
-            sql.append("where lower(a.fio) like'%" + searchStr.toLowerCase() + "%' order by b.name ");
+            sql.append("where lower(a.fio) like'%").append(searchStr.toLowerCase()).append("%' order by b.name ");
         } else if (type == SearchType.TITLE) {
             sql.append("where lower(b.name) like '%").append(searchStr.toLowerCase()).append("%' order by name ");
         }

@@ -9,6 +9,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.*;
 
+import static com.sun.activation.registries.LogSupport.log;
+
 @WebFilter(filterName = "CheckSessionFilter")
 public class CheckSessionFilter implements Filter {
 
@@ -22,14 +24,14 @@ public class CheckSessionFilter implements Filter {
     private void doBeforeProcessing(RequestWrapper request, ResponseWrapper response)
             throws IOException, ServletException {
         if (debug) {
-            //log("CheckSessionFilter:DoBeforeProcessing");
+            log("CheckSessionFilter:DoBeforeProcessing");
         }
     }
 
     private void doAfterProcessing(RequestWrapper request, ResponseWrapper response)
             throws IOException, ServletException {
         if (debug) {
-            //log("CheckSessionFilter:DoAfterProcessing");
+            log("CheckSessionFilter:DoAfterProcessing");
         }
     }
 
@@ -40,7 +42,7 @@ public class CheckSessionFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
 
         if (debug) {
-            //log("CheckSessionFilter:doFilter()");
+            log("CheckSessionFilter:doFilter()");
         }
 
         RequestWrapper wrapperedRequest = new RequestWrapper((HttpServletRequest) request);
@@ -84,7 +86,7 @@ public class CheckSessionFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                //log("CheckSessionFilter: Initializing filter");
+                log("CheckSessionFilter: Initializing filter");
             }
         }
     }
@@ -125,7 +127,7 @@ public class CheckSessionFilter implements Filter {
         }
     }
 
-    public static String getStackTrace(Throwable t) {
+    private static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
             StringWriter sw = new StringWriter();
@@ -142,23 +144,22 @@ public class CheckSessionFilter implements Filter {
 
     class RequestWrapper extends HttpServletRequestWrapper {
 
-        public RequestWrapper(HttpServletRequest request) {
+        RequestWrapper(HttpServletRequest request) {
             super(request);
         }
 
-        protected Hashtable localParams = null;
+        Hashtable localParams = null;
 
         public void setParameter(String name, String[] values) {
             if (debug) {
-                System.out.println("CheckSessionFilter::setParameter(" + name + "=" + values + ") localParam = " + localParams);
+                System.out.println("CheckSessionFilter::setParameter(" + name + "=" + Arrays.toString(values) + ") localParam = " + localParams);
             }
 
             if (localParams == null) {
                 localParams = new Hashtable();
                 Map wrappedParams = getRequest().getParameterMap();
                 Set keySet = wrappedParams.keySet();
-                for (Iterator it = keySet.iterator(); it.hasNext(); ) {
-                    Object key = it.next();
+                for (Object key : keySet) {
                     Object value = wrappedParams.get(key);
                     localParams.put(key, value);
                 }
@@ -221,7 +222,7 @@ public class CheckSessionFilter implements Filter {
     }
 
     class ResponseWrapper extends HttpServletResponseWrapper {
-        public ResponseWrapper(HttpServletResponse response) {
+        ResponseWrapper(HttpServletResponse response) {
             super(response);
         }
     }
