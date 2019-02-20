@@ -7,7 +7,6 @@
 }
 
 .osnova {
-    /* border: 2px solid gray;*/
     width: 800px;
     height: 700px;
     margin: auto;
@@ -16,9 +15,7 @@
 }
 
 .spisok {
-    /* border: thin solid blue;*/
     width: 150px;
-    /* height: 680px;*/
     position: relative;
     top: 10px;
     left: 10px;
@@ -115,23 +112,17 @@ a:hover {
 }
 
 .book_info {
-    /*border: thin solid green;*/
-    /*position: absolute;*/
-    /* right: 20px;
-     top: 20px;*/
     width: 250px;
     float: left;
     margin: 20px;
 }
 
 .book_details {
-    /* border: thin solid blue;*/
     width: 200px;
 }
 
 .book_list {
     position: absolute;
-    /*border: thin solid red;*/
     width: 620px;
     height: 700px;
     top: 20px;
@@ -143,8 +134,6 @@ a:hover {
     color: #48b3ff;
     text-align: center;
     font-size: larger;
-    /*margin-left: auto;
-    margin-right: auto;*/
 }
 
 .letters {

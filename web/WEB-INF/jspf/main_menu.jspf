@@ -1,5 +1,4 @@
 <%@ page import="data.Genre" %>
-<%@ page import="data.GenreList" %>
 <div class="spisok">
     <div><p><b>Жанр</b></p></div>
     <ul class="anv">

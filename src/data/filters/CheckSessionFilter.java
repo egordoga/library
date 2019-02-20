@@ -15,9 +15,8 @@ import static com.sun.activation.registries.LogSupport.log;
 public class CheckSessionFilter implements Filter {
 
     private static final boolean debug = false;
-
     private FilterConfig filterConfig = null;
-
+    
     public CheckSessionFilter() {
     }
 
